@@ -99,7 +99,6 @@ export default function NewsCarousel (props: {
     title: string;
     data: NewsItem[], 
     visibleCount: number, 
-    animationDuration: number
 }) {
     
     const len = props.data.length;
@@ -119,7 +118,7 @@ export default function NewsCarousel (props: {
             setDirection(direction);
             setTopIndex((prev) => mod(prev + (direction === 'down' ? 1 : -1), len));
             setKeyCounter((k) => k+1);
-            setTimeout(() => setAnimating(false), props.animationDuration)
+            setTimeout(() => setAnimating(false), 450)
         },
         [animating, len]
     );
