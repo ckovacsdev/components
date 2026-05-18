@@ -1,0 +1,202 @@
+.news-carousel-container{
+    font-family: 'Mozilla Text', sans-serif;
+    border: 1px solid black;
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    color: #f0ede8;
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background: #0d0d0f;
+}
+
+.news-carousel-title{
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin: 0 0 22px;
+    color: #f0ede8;
+}
+
+.news-carousel-content {
+    position: relative;
+    overflow: hidden;
+}
+
+.news-carousel-track{
+    display: flex;
+    flex-direction: column;
+}
+
+.news-carousel-row{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 0.5px solid rgba(240, 237, 232, 0.12);
+    height: 75px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.news-carousel-row-left{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.news-carousel-row-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.news-carousel-row-title{
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #f0ede8;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.news-carousel-row-subtitle{
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: rgba(240, 237, 232, 0.5);
+    font-weight: 400;
+}
+
+.news-carousel-row-date{
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(240, 237, 232, 0.6);
+}
+
+.news-carousel-row-link{
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #4a9eff;
+    text-decoration: none;
+    opacity: 0.8;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+.news-carousel-row-link:hover{
+    opacity: 1;
+}
+
+.news-carousel-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.news-carousel-badge--update {
+    background: #2a1f00;
+    color: #e8a020;
+    border: 0.5px solid #e8a020;
+}
+
+.news-carousel-badge--new {
+    background: #002a1e;
+    color: #2ecf98;
+    border: 0.5px solid #2ecf98;
+}
+
+.news-carousel-badge--note {
+    background: #1a1a2e;
+    color: #9090c0;
+    border: 0.5px solid #9090c0;
+}
+
+.news-carousel-dots {
+    display: flex;
+    gap: 5px;
+    flex: 1;
+    align-items: center;
+}
+
+.news-carousel-dot {
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background: rgba(240, 237, 232, 0.2);
+    transition: width 0.3s ease, border-radius 0.3s ease, background 0.3s ease;
+}
+
+.news-carousel-dot--active {
+    width: 18px;
+    border-radius: 3px;
+    background: #f0ede8;
+}
+
+.news-carousel-controls{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 16px; 
+}
+
+.news-carousel-button {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: rgba(240, 237, 232, 0.07);
+    border: 0.5px solid rgba(240, 237, 232, 0.15);
+    color: #f0ede8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    transition: background 0.15s, transform 0.1s;
+}
+.news-carousel-button:hover {
+    background: rgba(240, 237, 232, 0.14);
+}
+.news-carousel-button:active {
+    transform: scale(0.93);
+}
+
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in-up {
+    animation: slideUp 0.42s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.slide-in-down {
+  animation: slideDown 0.42s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.slide-out-up {
+    opacity: 0 !important;
+    transform: translateY(-10px);
+    transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.slide-out-down {
+    opacity: 0 !important;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
