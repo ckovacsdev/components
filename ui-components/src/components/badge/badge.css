@@ -1,0 +1,28 @@
+.badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.badge--update {
+    background: #2a1f00;
+    color: #e8a020;
+    border: 0.5px solid #e8a020;
+}
+
+.badge--new {
+    background: #002a1e;
+    color: #2ecf98;
+    border: 0.5px solid #2ecf98;
+}
+
+.badge--note {
+    background: #1a1a2e;
+    color: #9090c0;
+    border: 0.5px solid #9090c0;
+}

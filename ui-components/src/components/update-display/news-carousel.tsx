@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
 import './news-carousel.css';
+import type { BadgeType } from '../badge/badge';
+import Badge from '../badge/badge';
 
 const ITEM_HEIGHT = 76;
-
-export type BadgeType = 'New' | 'Update' | 'Note';
 
 export interface NewsItem {
     badge: BadgeType;
@@ -59,16 +59,6 @@ interface RowState {
     item: NewsItem;
     key: number;
     entering: Direction | null;
-}
-
-const BADGE_CLASS: Record<BadgeType, string> = {
-    Update: 'news-carousel-badge news-carousel-badge--update',
-    New: 'news-carousel-badge news-carousel-badge--new',
-    Note: 'news-carousel-badge news-carousel-badge--note',
-};
-
-function Badge({ type }: { type: BadgeType }) {
-  return <span className={BADGE_CLASS[type]}>{type}</span>;
 }
 
 function NewsItem({ row }: { row: RowState }) {
