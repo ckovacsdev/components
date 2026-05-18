@@ -34,7 +34,7 @@ function App() {
     <NewsCarousel 
       title='New from Platform Engineering: '
       data={newsSampleData} 
-      visibleCount={3} 
+      visibleCount={10} 
       animationDuration={450}
     />
   )
