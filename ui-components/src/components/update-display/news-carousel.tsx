@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
 import './news-carousel.css';
+import type { BadgeType } from '../badge/badge';
+import Badge from '../badge/badge';
 
 const ITEM_HEIGHT = 76;
-
-export type BadgeType = 'New' | 'Update' | 'Note';
 
 export interface NewsItem {
     badge: BadgeType;
@@ -61,16 +61,6 @@ interface RowState {
     entering: Direction | null;
 }
 
-const BADGE_CLASS: Record<BadgeType, string> = {
-    Update: 'news-carousel-badge news-carousel-badge--update',
-    New: 'news-carousel-badge news-carousel-badge--new',
-    Note: 'news-carousel-badge news-carousel-badge--note',
-};
-
-function Badge({ type }: { type: BadgeType }) {
-  return <span className={BADGE_CLASS[type]}>{type}</span>;
-}
-
 function NewsItem({ row }: { row: RowState }) {
     const { item, key, entering } = row;
 
@@ -112,6 +102,9 @@ export default function NewsCarousel (props: {
     animationDuration: number
 }) {
     
+    const len = props.data.length;
+    const getLength = Math.min(props.visibleCount, len);
+
     const [ topIndex, setTopIndex ] = useState<number>(0);
     const [ animating, setAnimating ] = useState<boolean>(false);
     const [ direction, setDirection ] = useState<Direction | null>(null);
@@ -124,22 +117,22 @@ export default function NewsCarousel (props: {
             }
             setAnimating(true);
             setDirection(direction);
-            setTopIndex((prev) => mod(prev + (direction === 'down' ? 1 : -1), props.data.length));
+            setTopIndex((prev) => mod(prev + (direction === 'down' ? 1 : -1), len));
             setKeyCounter((k) => k+1);
             setTimeout(() => setAnimating(false), props.animationDuration)
         },
-        [animating, props.data.length]
+        [animating, len]
     );
 
-    const rows: RowState[] = Array.from({ length: props.visibleCount }, (_, i) => {
-        const itemIndex = mod(topIndex + i, props.data.length);
+    const rows: RowState[] = Array.from({ length: getLength }, (_, i) => {
+        const itemIndex = mod(topIndex + i, len);
         const isEnteringRow = direction === "down" 
-            ? i === props.visibleCount - 1 
+            ? i === getLength - 1 
             : i === 0;
 
         return {
             item: props.data[itemIndex],
-            key: keyCounter * props.visibleCount + i,
+            key: keyCounter * getLength + i,
             entering: animating && isEnteringRow ? direction : null,
         };
     });
@@ -148,7 +141,7 @@ export default function NewsCarousel (props: {
         <div className='news-carousel-container'>
             <h2 className='news-carousel-title'> {props.title} </h2>
 
-            <div className='news-carousel-content' style={{ height: props.visibleCount * ITEM_HEIGHT}}>
+            <div className='news-carousel-content' style={{ height: getLength * ITEM_HEIGHT}}>
                 <div className='news-carousel-track'>
                     {rows.map((row) => (
                         <NewsItem key={row.key} row={row} />
